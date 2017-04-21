@@ -28,10 +28,10 @@ function OpticalFlow2D:__init(height, width)
    
    self.baseGrid = torch.Tensor(height, width, 2)
    for i=1,self.height do
-      self.baseGrid:select(3,2):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
+      self.baseGrid:select(3,1):select(1,i):fill(-1 + (i-1)/(self.height-1) * 2)
    end
    for j=1,self.width do
-      self.baseGrid:select(3,1):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
+      self.baseGrid:select(3,2):select(2,j):fill(-1 + (j-1)/(self.width-1) * 2)
    end
 
    self.batchGrid = torch.Tensor(1, height, width, 2):copy(self.baseGrid)
